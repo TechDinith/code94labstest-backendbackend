@@ -69,11 +69,11 @@ export class ProductsController {
   @Patch(':id')
   async updateProduct(
     @Param('id') prodId: string,
-    @Body('sku') prodSku: string,
-    @Body('name') prodName: string,
-    @Body('description') prodDesc: string,
-    @Body('price') prodPrice: number,
-    @Body('qty') prodQty: number,
+    @Body('sku') prodSku: String,
+    @Body('name') prodName: String,
+    @Body('description') prodDesc: String,
+    @Body('price') prodPrice: Number,
+    @Body('qty') prodQty: Number,
     @Body('fav') prodFav: Boolean,
   ) {
     await this.productService.updateProduct(

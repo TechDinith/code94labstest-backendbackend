@@ -93,6 +93,7 @@ export class ProductService {
       updatedProduct.fav = fav;
     }
     updatedProduct.save();
+    console.log('updateProduct', updatedProduct);
   }
 
   // delete data from mongodb atlas
