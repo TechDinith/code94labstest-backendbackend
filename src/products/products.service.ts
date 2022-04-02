@@ -54,12 +54,15 @@ export class ProductService {
 
   // get a single product from mongodb atlas
   // async getSingleProduct(productId: string) {
-  //   const product = await this.findProduct(productId);
+  //   const prod = await this.findProduct(productId);
   //   return {
-  //     id: product.id,
-  //     title: product.title,
-  //     description: product.description,
-  //     price: product.price,
+  //     id: prod.id,
+  //     sku: prod.sku,
+  //     name: prod.name,
+  //     description: prod.description,
+  //     price: prod.price,
+  //     qty: prod.qty,
+  //     fav: prod.fav,
   //   };
   // }
 
