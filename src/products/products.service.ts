@@ -17,6 +17,7 @@ export class ProductService {
     description: String,
     price: Number,
     qty: Number,
+    fav: Boolean,
     // img: {
     //   data: Buffer;
     //   contentType: String;
@@ -28,6 +29,7 @@ export class ProductService {
       description,
       price,
       qty,
+      fav,
       // img,
     });
     const result = await newProduct.save();
@@ -46,6 +48,7 @@ export class ProductService {
       description: prod.description,
       price: prod.price,
       qty: prod.qty,
+      fav: prod.fav,
     }));
   }
 
@@ -61,24 +64,36 @@ export class ProductService {
   // }
 
   //update data in mongodb atlas
-  // async updateProduct(
-  //   productId: string,
-  //   title: string,
-  //   desc: string,
-  //   price: number,
-  // ) {
-  //   const updatedProduct = await this.findProduct(productId);
-  //   if (title) {
-  //     updatedProduct.title = title;
-  //   }
-  //   if (desc) {
-  //     updatedProduct.description = desc;
-  //   }
-  //   if (price) {
-  //     updatedProduct.price = price;
-  //   }
-  //   updatedProduct.save();
-  // }
+  async updateProduct(
+    productId: string,
+    sku: String,
+    name: String,
+    description: String,
+    price: Number,
+    qty: Number,
+    fav: Boolean,
+  ) {
+    const updatedProduct = await this.findProduct(productId);
+    if (sku) {
+      updatedProduct.sku = sku;
+    }
+    if (name) {
+      updatedProduct.name = name;
+    }
+    if (description) {
+      updatedProduct.description = description;
+    }
+    if (price) {
+      updatedProduct.price = price;
+    }
+    if (qty) {
+      updatedProduct.qty = qty;
+    }
+    if (fav) {
+      updatedProduct.fav = fav;
+    }
+    updatedProduct.save();
+  }
 
   // delete data from mongodb atlas
   async deleteProduct(prodId: string) {
@@ -90,16 +105,16 @@ export class ProductService {
   }
 
   //find product in mongodb atlas
-  // private async findProduct(id: string): Promise<Product> {
-  //   let product;
-  //   try {
-  //     product = await this.productModel.findById(id).exec();
-  //   } catch (error) {
-  //     throw new NotFoundException('Cound not find product.!');
-  //   }
-  //   if (!product) {
-  //     throw new NotFoundException('Cound not find product.!');
-  //   }
-  //   return product;
-  // }
+  private async findProduct(id: string): Promise<Product> {
+    let product;
+    try {
+      product = await this.productModel.findById(id).exec();
+    } catch (error) {
+      throw new NotFoundException('Cound not find product.!');
+    }
+    if (!product) {
+      throw new NotFoundException('Cound not find product.!');
+    }
+    return product;
+  }
 }

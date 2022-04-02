@@ -32,12 +32,14 @@ export class ProductsController {
     @Body('qty') prodQty: number,
     // @UploadedFiles() files: Array<Express.Multer.File>,
   ) {
+    const fav = false;
     const generatedId = await this.productService.insertProduct(
       prodSku,
       prodName,
       prodDesc,
       prodPrice,
       prodQty,
+      fav,
       // files,
     );
     // console.log('files', files);
@@ -64,21 +66,27 @@ export class ProductsController {
   // }
 
   //update data in mongoddb atlas
-  // @Patch(':id')
-  // async updateProduct(
-  //   @Param('id') prodId: string,
-  //   @Body('title') prodTitle: string,
-  //   @Body('description') prodDesc: string,
-  //   @Body('price') prodPrice: number,
-  // ) {
-  //   await this.productService.updateProduct(
-  //     prodId,
-  //     prodTitle,
-  //     prodDesc,
-  //     prodPrice,
-  //   );
-  //   return null;
-  // }
+  @Patch(':id')
+  async updateProduct(
+    @Param('id') prodId: string,
+    @Body('sku') prodSku: string,
+    @Body('name') prodName: string,
+    @Body('description') prodDesc: string,
+    @Body('price') prodPrice: number,
+    @Body('qty') prodQty: number,
+    @Body('fav') prodFav: Boolean,
+  ) {
+    await this.productService.updateProduct(
+      prodId,
+      prodSku,
+      prodName,
+      prodDesc,
+      prodPrice,
+      prodQty,
+      prodFav,
+    );
+    return null;
+  }
 
   //delete data from mongodb atals
   @Delete(':id')

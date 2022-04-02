@@ -6,6 +6,7 @@ export const ProductSchema = new mongoose.Schema({
   description: { type: String, required: false },
   price: { type: Number, required: false },
   qty: { type: Number, required: false },
+  fav: { type: Boolean, required: false },
   // img: {
   //   data: Buffer,
   //   contentType: String,
@@ -19,6 +20,7 @@ export interface Product extends mongoose.Document {
   description: String;
   price: Number;
   qty: Number;
+  fav: Boolean;
   // img: {
   //   data: Buffer;
   //   contentType: String;
